@@ -1,435 +1,679 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Maniprasanth | Manikandan K : UI/UX Designer</title> 
-	<meta name="description" content="Maniprasanth | I’m Manikandan K, a UI/UX Designer, Graphic designer based in Pondicherry (India).
-	With 3+ years of experience. Skilled with Adobe Creative Suite (Photoshop, Illustrator, Adobe XD, After Effects). I work on Web design, Branding, ui/ux design, motion gaphics and so on. I specialize in helping startups grow their businesses.">	
-	
-    <link rel="shortcut icon" href="fav.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
-    <meta name="keywords" content="Maniprasanth, mani prasanth, MANIPRASANTH, Manikandan K, maniprasanth, Designer, Manikandan">
-    <meta name="author" content="Maniprasanth">
-    <link rel="stylesheet" href="css/vendor/icomoon/style.css">
-    <link rel="stylesheet" href="css/vendor/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/vendor/animate.min.css">
-    <link rel="stylesheet" href="css/vendor/aos.css">
-    <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="css/vendor/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manikandan K — UI/UX & Product Designer</title>
+  
+  <!-- Fonts: Plus Jakarta Sans for modern tech aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
+  <style>
+    /* ==========================================================================
+       CSS VARIABLES & THEME SETUP (EternaCloud Color Palette)
+       ========================================================================== */
+    :root {
+      --bg-dark: #040207;
+      --bg-card: rgba(22, 16, 35, 0.65);
+      --bg-card-hover: rgba(35, 25, 55, 0.85);
+      --border-color: rgba(175, 152, 228, 0.15);
+      --border-glow: rgba(153, 101, 232, 0.4);
+      
+      --accent-purple: #9965E8;
+      --accent-lavender: #AF98E4;
+      --accent-deep-purple: #4632C9;
+      --accent-coral: #C96B4B;
+      
+      --text-main: #F9F6FA;
+      --text-muted: #A39BAE;
+      
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 8px;
+      
+      --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Glow Background Spheres */
+    .glow-sphere {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .glow-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(70, 50, 201, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .glow-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(153, 101, 232, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+      top: 1200px;
+      right: -100px;
+    }
+
+    /* Layout Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Typography Utilities */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      background: rgba(175, 152, 228, 0.1);
+      border: 1px solid var(--border-color);
+      color: var(--accent-lavender);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #34d399;
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--text-main);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #FFFFFF 0%, var(--accent-lavender) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(4, 2, 7, 0.7);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.25rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-deep-purple));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .cta-btn {
+      padding: 10px 24px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-deep-purple));
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(153, 101, 232, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(153, 101, 232, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-top: 180px;
+      padding-bottom: 100px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      max-width: 900px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent-lavender) 0%, var(--accent-purple) 50%, var(--accent-coral) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-bottom: 36px;
+    }
+
+    /* Stats Banner */
+    .stats-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent-lavender);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Portfolio Section (Grid System) */
+    .portfolio-section {
+      padding: 100px 0;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-glow);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .col-8 { grid-column: span 8; }
+    .col-6 { grid-column: span 6; }
+    .col-4 { grid-column: span 4; }
+
+    .card-category {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-lavender);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 1.75rem;
+      margin-bottom: 12px;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .card-preview {
+      width: 100%;
+      height: 220px;
+      border-radius: var(--radius-md);
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-preview i {
+      width: 48px;
+      height: 48px;
+      color: var(--accent-purple);
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+
+    .card:hover .card-preview i {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    /* Experience & Highlights Section */
+    .highlights-section {
+      padding: 100px 0;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .timeline-item:hover {
+      border-color: var(--border-glow);
+      background: var(--bg-card-hover);
+    }
+
+    .timeline-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .timeline-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(153, 101, 232, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-purple);
+    }
+
+    .timeline-role {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .timeline-org {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .timeline-badge {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: var(--accent-lavender);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 100px 0 140px;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, rgba(70, 50, 201, 0.2), rgba(22, 16, 35, 0.8));
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-lg);
+      padding: 64px;
+      text-align: center;
+      position: relative;
+    }
+
+    .contact-box h2 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      padding: 12px 24px;
+      border-radius: 100px;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .contact-chip:hover {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .col-8, .col-6, .col-4 { grid-column: span 12; }
+      .hero h1 { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-sphere glow-1"></div>
+  <div class="glow-sphere glow-2"></div>
+
+  <!-- Navbar -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">M</div>
+        <span>Maniprasanth</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#works">Works</a></li>
+        <li><a href="#highlights">Highlights</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a href="#contact" class="cta-btn">
+        <span>Get in Touch</span>
+        <i data-lucide="arrow-up-right"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero container">
+    <div class="badge">
+      <span class="badge-dot"></span> Available for New Projects
+    </div>
+    <h1>Designing Digital Products with <span>Precision & Vision</span></h1>
+    <p>Hi, I'm Manikandan K (@maniprasanth). A Product & UI/UX Designer dedicated to turning complex problems into intuitive, user-centric experiences.</p>
     
+    <!-- Stats Summary Banner -->
+    <div class="stats-card">
+      <div class="stat-item">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Google</div>
+        <div class="stat-label">Certified UX Designer</div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Theme Style -->
-    <link rel="stylesheet" href="css/style.css">
+  <!-- Portfolio Works (EternaCloud Bento Grid Style) -->
+  <section class="portfolio-section container" id="works">
+    <h2 class="section-title">Featured Works</h2>
+    <p class="section-desc">Selected case studies, visual design systems, and interaction experiments.</p>
 
-  </head>
-  <body data-spy="scroll" data-target=".site-nav-target" data-offset="200">
+    <div class="grid-container">
+      
+      <!-- Card 1: UI/UX Case Study (Featured Large Card) -->
+      <a href="casestudy.html" class="card col-8">
+        <div>
+          <div class="card-category">Case Study</div>
+          <h3 class="card-title">End-to-End Product Design</h3>
+          <p class="card-desc">User research, persona creation, flow mapping, and problem-solving architectures built for scale.</p>
+        </div>
+        <div class="card-preview">
+          <i data-lucide="layout"></i>
+        </div>
+      </a>
 
-    <nav class="unslate_co--site-mobile-menu">
-      <div class="close-wrap d-flex">
-        <a href="#" class="d-flex ml-auto js-menu-toggle">
-          <span class="close-label">Close</span>
-          <div class="close-times">
-            <span class="bar1"></span>
-            <span class="bar2"></span>
+      <!-- Card 2: UI / Visual Design -->
+      <a href="uidesign.html" class="card col-4">
+        <div>
+          <div class="card-category">Visual Design</div>
+          <h3 class="card-title">Web & Mobile Apps</h3>
+          <p class="card-desc">High-fidelity interfaces crafted with typography and color precision.</p>
+        </div>
+        <div class="card-preview">
+          <i data-lucide="smartphone"></i>
+        </div>
+      </a>
+
+      <!-- Card 3: Design System -->
+      <a href="designsystem.html" class="card col-4">
+        <div>
+          <div class="card-category">Infrastructure</div>
+          <h3 class="card-title">Design Systems</h3>
+          <p class="card-desc">Scalable component libraries, style guides, and design tokens.</p>
+        </div>
+        <div class="card-preview">
+          <i data-lucide="layers"></i>
+        </div>
+      </a>
+
+      <!-- Card 4: Interaction Design -->
+      <a href="interaction.html" class="card col-4">
+        <div>
+          <div class="card-category">Motion & UI</div>
+          <h3 class="card-title">Interaction Design</h3>
+          <p class="card-desc">Micro-interactions and fluid motion graphics bringing UI to life.</p>
+        </div>
+        <div class="card-preview">
+          <i data-lucide="sparkles"></i>
+        </div>
+      </a>
+
+      <!-- Card 5: Branding & 3D -->
+      <a href="branding.html" class="card col-4">
+        <div>
+          <div class="card-category">Identity & Assets</div>
+          <h3 class="card-title">Branding & 3D</h3>
+          <p class="card-desc">Logos, visual identity, vector illustrations, and 3D modeling.</p>
+        </div>
+        <div class="card-preview">
+          <i data-lucide="box"></i>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Highlights & Credentials -->
+  <section class="highlights-section container" id="highlights">
+    <h2 class="section-title">Recent Highlights</h2>
+    <p class="section-desc">Recognition, certifications, and key accomplishments.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-icon"><i data-lucide="award"></i></div>
+          <div>
+            <div class="timeline-role">Google UX Design Certificate</div>
+            <div class="timeline-org">Coursera / Google Professional Certification</div>
           </div>
+        </div>
+        <div class="timeline-badge">Credential</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-icon"><i data-lucide="star"></i></div>
+          <div>
+            <div class="timeline-role">Rising Star Award</div>
+            <div class="timeline-org">Cognizant — 2024</div>
+          </div>
+        </div>
+        <div class="timeline-badge">Recognition</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-icon"><i data-lucide="users"></i></div>
+          <div>
+            <div class="timeline-role">Best Team Player</div>
+            <div class="timeline-org">Cognizant — Q2 2024</div>
+          </div>
+        </div>
+        <div class="timeline-badge">Recognition</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="contact-section container" id="contact">
+    <div class="contact-box">
+      <h2>Let's build something remarkable.</h2>
+      <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">Have a project in mind or want to collaborate? Feel free to reach out directly.</p>
+      
+      <div class="contact-links">
+        <a href="mailto:maniprasanth1995@gmail.com" class="contact-chip">
+          <i data-lucide="mail"></i>
+          <span>maniprasanth1995@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/maniprasanth" target="_blank" class="contact-chip">
+          <i data-lucide="linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://www.behance.net/maniprasanth" target="_blank" class="contact-chip">
+          <i data-lucide="external-link"></i>
+          <span>Behance</span>
         </a>
       </div>
-      <div class="site-mobile-inner"></div>
-    </nav>
-
-
-    <div class="unslate_co--site-wrap">
-
-      <div class="unslate_co--site-inner">
-
-        <div class="lines-wrap">
-          <div class="lines-inner">
-            <div class="lines"></div>
-          </div>
-        </div>
-        <!-- END lines -->
-      
-      <nav class="unslate_co--site-nav site-nav-target">
-
-        <div class="container">
-        
-          <div class="row align-items-center justify-content-between text-left">
-            <div class="col-md-5 site-logo">
-              <a href="http://maniprasanth.xyz/" class="unslate_co--site-logo">
-                <img src="images/maniprasanth-logo.svg" width="48" height="48" alt="Maniprasanth-logo">
-              </a>
-            </div>
-            <div class="col-md-7 text-right text-lg-right">
-              <ul class="site-nav-ul js-clone-nav text-left d-none d-lg-inline-block">
-                <li>
-                  <a href="#home-section" class="nav-link">Home</a>
-                </li>
-                <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="#services-section" class="nav-link">What I do</a></li>
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
-				<li> <a href="https://www.instagram.com/maniprasanth_designer/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-				<li><a href="https://www.behance.net/maniprasanth" target="_blank"><i class="fab fa-behance"> </i></a></li>				
-				<li> <a href="https://www.linkedin.com/in/maniprasanth" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-              </ul>
-
-              <ul class="site-nav-ul-none-onepage text-right d-inline-block d-lg-none">
-                <li><a href="#" class="js-menu-toggle">Menu</a></li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
-
-      </nav>
-      <!-- END nav -->
-
-      <div class="cover-v1 jarallax" style="background-image: url('images/cover_bg_2.jpg');" id="home-section">
-        <div class="container">
-          <div class="row align-items-center">
-              
-            <div class="col-md-7 mx-auto text-center">
-              <h1 class="heading gsap-reveal-hero">HELLO I'M</h1>
-              <h2 class="subheading" data-aos="fade-up"data-aos-delay="200">Manikandan K</h2>
-              <p class="tagname"data-aos="fade-up"data-aos-delay="200"><span>@ </span>maniprasanth</p>
-            </div>
-
-          </div>
-        </div>
-
-
-        <a href="#portfolio-section" class="mouse-wrap smoothscroll">
-          <span class="mouse">
-            <span class="scroll"></span>
-          </span>
-          <span class="mouse-label">Scroll</span>
-        </a>
-
-        <div class="linestrip">
-          <div class="linestripbg2">
-  
-            <div class="string2content b1">
-              <span class="subcont3"></span>
-              <span class="subcont4"></span>
-              <span class="subcont5"></span>
-              <span class="subcont6"></span>
-            </div>
-  
-            <div class="string2content b2">
-              <span class="subcont3"></span>
-              <span class="subcont4"></span>
-              <span class="subcont5"></span>
-              <span class="subcont6"></span>
-            </div>
-  
-            <div class="string2content b3">
-              <span class="subcont3"></span>
-              <span class="subcont4"></span>
-              <span class="subcont5"></span>
-              <span class="subcont6"></span>
-            </div>
-  
-            <div class="string2content b4">
-              <span class="subcont3"></span>
-              <span class="subcont4"></span>
-              <span class="subcont5"></span>
-              <span class="subcont6"></span>
-            </div>
-  
-  
-          </div>
-          <div class="linestripbg">
-            <div class="stringcontent">
-              <span class="subcont1"></span>
-              <span class="subcont2"></span>
-            </div>
-            
-          </div>
-          
-        </div>
-
-      </div>
-      <!-- END .cover-v1 -->
-
-      
-      
-      <div class="unslate_co--section" id="portfolio-section">
-        <div class="container">
-
-          <div class="section-heading-wrap text-center mb-5">
-            <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">My Works</span></h2>
-            <span class="gsap-reveal"><img src="images/divider.png" alt="divider" width="76"></span>
-            <p> When love and skill work together, expect a masterpiece. </p>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12 ">
-              <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 " data-aos="fade-up" data-aos-delay="100" data-id="2">
-                  <a href="uidesign.html">
-                    <div class="port-ui">
-                    <h6> UI / Visual Design</h6>
-                      <p>Web, App design ...  </p>
-                    <img src="images/newsvg/ui-p.png">
-                    </div>
-                  </a>
-                </div>
-              
-                <div class="col-lg-6 col-md-6 col-sm-12 " data-aos="fade-up" data-aos-delay="100" data-id="2">
-                  <a href="designsystem_home.html">
-                    <div class="port-casestudy">
-                    <h6> UX Casestudy</h6>
-                      <p>Research, Personas, Problem statement ... </p>
-                    <img src="images/newsvg/casestudy.png">
-                    </div>
-                  </a>
-                </div>
-                
-                <div class="col-lg-6 col-md-6 col-sm-12 " data-aos="fade-up" data-aos-delay="200" data-id="2">
-                  <a href="designsystem_home.html">
-                    <div class="port-branding">
-                    <h6> Branding</h6>
-                      <p>Logo, Color palette, Letterhead ... </p>
-                    <img src="images/newsvg/branding-p.png">
-                    </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12 " data-aos="fade-up" data-aos-delay="200" data-id="2">
-                  <a href="designsystem_home.html">
-                    <div class="port-idesign">
-                    <h6> Interaction Design</h6>
-                      <p>Micro interaction ...  </p>
-                    <img src="images/newsvg/interaction-p.png">
-                    </div>
-                    </a>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 " data-aos="fade-up" data-aos-delay="100" data-id="2">
-              <a href="designsystem_home.html">
-                <div class="port-designsystem">
-                <h6> Design System</h6>
-                  <p>Style guide, Component, Colors ... </p>
-                <img src="images/newsvg/dsystem.png">
-                </div>
-                </a>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 " data-aos="fade-up" data-aos-delay="300" data-id="2">
-              <a href="designsystem_home.html">
-                <div class="port-motiondesign">
-                <h6> Motion Graphics</h6>
-                  <p>Lottie animation ...</p>
-                <img src="images/newsvg/motion-p.gif">
-                </div>
-                </a>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 " data-aos="fade-up" data-aos-delay="300" data-id="2">
-              <a href="designsystem_home.html">
-                <div class="port-modeling">
-                <h6> 3D Modeling</h6>
-                  <p>Modeling ...</p>
-                <img src="images/newsvg/3d-p.png">
-                </div>
-                </a>
-            </div>
-
-
-          </div>
-
-          <br>
-
-        </div>
-      </div>
-
-
-      <hr class="port-line">
-      
-
-      <div class="unslate_co--section" id="services-section">
-        <div class="container">
-
-          <div class="section-heading-wrap text-center mb-5">
-            <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">What I do</span></h2>
-            <span class="gsap-reveal"><img src="images/divider.png" alt="divider" width="76"></span>
-          </div>
-
-          <div class="row gutter-v3 whatido">
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="feature-v1" data-aos="fade-up" data-aos-delay="100">
-                <div class="wrap-icon mb-3">
-                  <img src="images/svg/web design-icon.svg" alt="Image">
-                </div>
-                <h3>UI/Visual Design</h3>
-                <p>Works on the appearance, layout of a website. i.e. the colors, font, images & the structure. <br>
-                  ( Web Design, Design System, Iconography, Typography… ) </p>
-              </div> 
-            </div>
-			
-			<div class="col-md-6 col-lg-4 mb-4">
-              <div class="feature-v1" data-aos="fade-up" data-aos-delay="100">
-                <div class="wrap-icon mb-3">
-                  <img src="images/svg/ux-icon.svg" alt="Image" class="img-fluid">
-                </div>
-                <h3>UX Design</h3>
-                <p> Designing the entire process of acquiring and integrating the product, including design, usability & function. <br>
-                  ( Research, Wireframe, prototype, Interaction … )</p>
-              </div> 
-            </div>
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="feature-v1" data-aos="fade-up" data-aos-delay="100">
-                <div class="wrap-icon mb-3">
-                  <img src="images/svg/branding-icon.svg" alt="Icon">
-                </div>
-                <h3>Branding</h3>
-                <p> Marketing practice in which a Logo, symbol, letterpad, visiting card et., are done for a company. <br>
-                  ( Logo, Flyer, Brochure, Business card… )</p>
-              </div> 
-            </div>
-
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="feature-v1" data-aos="fade-up" data-aos-delay="200">
-                <div class="wrap-icon mb-3">
-                  <img src="images/svg/motion graphics-icon.svg" alt="Image">
-                </div>
-                <h3>Motion Graphics</h3>
-                <p> Working on pieces of animation or digital footage combined with audio for use in multimedia <br> ( lottie animation, 2D Animation… )</p>
-              </div> 
-            </div>
-            
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="feature-v1" data-aos="fade-up" data-aos-delay="200">
-                <div class="wrap-icon mb-3">
-                  <img src="images/svg/front end-icon.svg" alt="Image">
-                </div>
-                <h3>Front-End Development</h3>
-                <p> Working with some of the basic knowledges in HTML and CSS to develop Front-end view for a webpage. <br> ( HTML, CSS, Bootstrap… )  </p>
-              </div> 
-            </div>
-
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="feature-v1" data-aos="fade-up" data-aos-delay="200">
-                <div class="wrap-icon mb-3">
-                  <img src="images/svg/illustration-icon.svg" alt="Image">
-                </div>
-                <h3>Illustration / 3D</h3>
-                <p> Visual explanation of a text, concept or process, designed for integration in published media. creating 3D models <br> ( Illustration, Object modeling )</p>
-              </div> 
-            </div>
-
-          </div> 
-		  
-        </div>
-      </div>
-	  <hr class="port-line">
-
-      
-
-
-      <div class="unslate_co--section" id="contact-section">
-        <div class="container">
-          <div class="section-heading-wrap text-center mb-5">
-            <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">Get In Touch</span></h2>
-            <span class="gsap-reveal"><img src="images/divider.png" alt="divider" width="76"></span>
-          </div>
-
-
-          <div class="row justify-content-between">
-            
-            <div class="col-md-6">
-              <form method="post" class="form-outline-style-v1" id="contactForm">
-                <div class="form-group row mb-0">
-
-                  <div class="col-lg-6 form-group gsap-reveal">
-                    <label for="name">Name</label>
-                    <input name="name" type="text" class="form-control" id="name">
-                  </div>
-                  <div class="col-lg-6 form-group gsap-reveal">
-                    <label for="email">Email</label>
-                    <input name="email" type="email" class="form-control" id="email">
-                  </div>
-                  <div class="col-lg-12 form-group gsap-reveal">
-                    <label for="message">Write your message...</label>
-                    <textarea name="message" id="message" cols="30" rows="7" class="form-control"></textarea>
-                  </div>
-                </div>
-                <div class="form-group row gsap-reveal">
-                    <div class="col-md-12 d-flex align-items-center">
-                      <input type="submit" class="btn btn-outline-pill btn-custom-light mr-3" value="Send Message">
-                      <span class="submitting"></span>
-                    </div>
-                  </div>
-              </form>
-              <div id="form-message-warning" class="mt-4"></div> 
-              <div id="form-message-success">
-                Your message was sent, thank you!
-              </div>
-
-            </div>
-
-            <div class="col-md-5">
-              <div class="contact-info-v1">
-                <div class="gsap-reveal d-block">
-                  <span class="d-block contact-info-label">Name</span>
-                  <a href="#" class="contact-info-val">Manikandan K</a>
-                </div>
-                <div class="gsap-reveal d-block">
-                  <span class="d-block contact-info-label">Email</span>
-                  <a href="#" class="contact-info-val">maniprasanth1995@gmail.com</a>
-                </div>
-                <div class="gsap-reveal d-block">
-                  <span class="d-block contact-info-label">Location</span>
-                  <address class="contact-info-val">Pondicherry, India</address>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-	  <hr class="port-line">
-
-
-      <footer class="unslate_co--footer unslate_co--section">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-7">
-              
-              <div class="footer-site-logo"><a href="#"><img src="images/maniprasanth-logo.svg" width="46" height="46" alt="Maniprasanth-logo"></a>
-			  </div>
-				<p> Follow Me: </p>
-              <ul class="footer-site-social">
-                <li> <a href="https://www.instagram.com/maniprasanth_designer/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a></li>
-                <li><a href="https://www.behance.net/maniprasanth" target="_blank"><i class="fab fa-behance"> </i>Behance</a></li>
-				<li> <a href="https://www.linkedin.com/in/maniprasanth" target="_blank"><i class="fab fa-linkedin-in"></i>LinkedIn</a></li>
-				<li><a href="https://www.negativedesigns.ga" target="_blank"><i class="fas fa-blog"> </i>Blog</a></li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      
     </div>
+  </section>
 
-    
-    <!-- Loader -->
-    <div id="unslate_co--overlayer"></div>
-    <div class="site-loader-wrap">
-      <div class="site-loader"></div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Manikandan K (Maniprasanth). Designed with EternaCloud Visual Aesthetic.</p>
     </div>
+  </footer>
 
-    <script src="js/scripts-dist.js"></script>
-    <script src="js/main.js"></script>
-
-
-  </body>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+  </script>
+</body>
 </html>
